@@ -10,13 +10,11 @@ public:
         for (int x: nums)
         {
             if (x == num1)
-            {
                 count1++;
-            }
+        
             else if (x == num2)
-            {
                 count2++;
-            }
+            
             else if (count1 == 0)
             {
                 num1 = x;
