@@ -13,6 +13,7 @@ public:
                 candies[i] = candies[i-1] + 1;
             }
         }
+        int s = candies[n - 1];
         
         for (int i=n-2; i>=0; i--)
         {
@@ -20,13 +21,10 @@ public:
             {
                 candies[i] = max(candies[i+1] + 1, candies[i]);
             }
+            s += candies[i];
         }
         
-        int s = 0;
-        for (auto x: candies)
-        {
-            s += x;
-        }
+
         return s;
     }
 };
