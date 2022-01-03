@@ -2,13 +2,13 @@ class Trie
 {
 
 private:
-    struct TrieNode
+    struct TrieNode 
     {
-        struct TrieNode *child[26];
-        bool isEnd;
+        bool isEnd = false;
+        TrieNode *childs[26];
     };
     TrieNode *node;
-
+    
 public:
     Trie()
     {
@@ -17,38 +17,36 @@ public:
 
     void insert(string word)
     {
-        TrieNode *cur = node;
-        for (char c : word)
+        TrieNode *curr = node;
+        for (char c: word)
         {
-            if (cur->child[c - 'a'] == NULL)
-                cur->child[c - 'a'] = new TrieNode();
-            cur = cur->child[c - 'a'];
+            if (curr->childs[c - 'a'] == NULL)
+                curr->childs[c - 'a'] = new TrieNode();
+            curr = curr->childs[c - 'a'];
         }
-        cur->isEnd = true;
+        curr->isEnd = true;
     }
 
     bool search(string word)
     {
-        TrieNode *cur = node;
-        for (char c : word)
+        TrieNode *curr = node;
+        for (char c: word)
         {
-            if (cur->child[c - 'a'] == NULL)
+            if (curr->childs[c - 'a'] == NULL)
                 return false;
-            cur = cur->child[c - 'a'];
+            curr = curr->childs[c - 'a'];
         }
-        if (cur->isEnd == true)
-            return true;
-        return false;
+        return curr->isEnd;
     }
 
     bool startsWith(string prefix)
     {
-        TrieNode *cur = node;
-        for (char c : prefix)
+        TrieNode *curr = node;
+        for (char c: prefix)
         {
-            if (cur->child[c - 'a'] == NULL)
+            if (curr->childs[c - 'a'] == NULL)
                 return false;
-            cur = cur->child[c - 'a'];
+            curr = curr->childs[c - 'a'];
         }
         return true;
     }
