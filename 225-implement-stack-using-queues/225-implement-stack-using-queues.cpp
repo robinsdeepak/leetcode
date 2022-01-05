@@ -9,32 +9,24 @@ public:
 
     }
     
-    void push(int x) {
+    void push(int x) 
+    {
         q1.push(x);
-        top_ = x;
+        for (int i=0; i<q1.size()-1; i++)
+        {
+            q1.push(q1.front());
+            q1.pop();
+        }
     }
     
     int pop() {
-        int x;
-        while (!q1.empty())
-        {
-            if (q1.size() > 1)
-            {
-                top_ =  q1.front();
-                q2.push(top_);
-            }                
-            else
-            {
-                x = q1.front();
-            }
-            q1.pop();
-        }
-        swap(q1, q2);
+        int x = q1.front();
+        q1.pop();
         return x;
     }
     
     int top() {
-        return top_;
+        return q1.front();
     }
     
     bool empty() {
