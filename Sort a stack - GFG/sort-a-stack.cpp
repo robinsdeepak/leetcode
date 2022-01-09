@@ -39,26 +39,18 @@ while(t--)
 }// } Driver Code Ends
 
 
-/*The structure of the class is
-class SortedStack{
-public:
-	stack<int> s;
-	void sort();
-};
-*/
-
 void SortedStack :: sort()
 {
     if(s.empty())
         return;
+    
     int temp=s.top();
     s.pop();
     sort();
-    if(s.empty()){
-        s.push(temp);
-        return;
-    }
-    if(s.top()>temp){
+    
+    
+    if(!s.empty() && s.top() > temp)
+    {
         int t=s.top();
         s.pop();
         s.push(temp);
@@ -66,5 +58,5 @@ void SortedStack :: sort()
         temp=t;
     }
     s.push(temp);
-    return;
 }
+
