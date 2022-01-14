@@ -14,14 +14,12 @@ public:
         {
             st.pop();
         }
-        int ans;
         
+        int ans;
         if (st.empty())
             ans = i + 1;
         else
-        {
             ans = i - st.top();
-        }
         
         st.push(i);
         return ans;
