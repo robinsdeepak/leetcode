@@ -11,7 +11,6 @@ public:
         int min_jump = nums.size() + 1;
         for (int i=1; i<=nums[index]; i++)
         {
-            // cout << index << " " << i + 1 << "/" << nums[index] << " " << min_jump << endl;
             min_jump = min(min_jump, 1 + solve(dp, nums, index + i));
         }
         return dp[index] = min_jump;
