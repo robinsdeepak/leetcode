@@ -6,12 +6,19 @@ class Solution:
         if (len(p1) != len(s1)):
             return False
         
-        d = {}
+        d1 = {}
+        d2 = {}
         
         for p, s in  zip(p1, s1):
-            if p not in d:
-                d[p] = s
-            if d[p] != s:
+            if p not in d1:
+                d1[p] = s
+            if d1[p] != s:
                 return False
             
-        return len(set(d.values())) == len(d)
+            if s not in d2:
+                d2[s] = p
+            if d2[s] != p:
+                return False
+        
+        return True
+            
