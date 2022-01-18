@@ -68,26 +68,24 @@ struct Node
 
 unordered_map<int,int> m;
 
-Node *buildUtil(int in[], int post[], int inStrt, int inEnd, int &pIndex)
+Node *build(int in[], int post[], int s, int e, int &rootIdx)
 {
-    if (inStrt > inEnd)
+    if (s > e)
         return NULL;
 
-    Node *node = new Node(post[pIndex]);
-    // (*pIndex)--;
-    pIndex--;
+    Node *node = new Node(post[rootIdx--]);
+    
 
-    if (inStrt == inEnd)
+    if (s == e)
         return node;
 
-    int iIndex = m[node->data];
+    int pivot = m[node->data];
 
-    node->right = buildUtil(in, post, iIndex + 1, inEnd, pIndex);
-    node->left = buildUtil(in, post, inStrt, iIndex - 1, pIndex);
+    node->right = build(in, post, pivot + 1, e, rootIdx);
+    node->left = build(in, post, s, pivot - 1, rootIdx);
 
     return node;
 }
-
 
 //Function to return a tree created from postorder and inoreder traversals.
 Node *buildTree(int in[], int post[], int n) 
@@ -95,9 +93,9 @@ Node *buildTree(int in[], int post[], int n)
     for (int i=0; i<n; i++)
         m[in[i]] = i;
     
-    int pIndex = n - 1;
+    int rootIdx = n - 1;
     
-    return buildUtil(in, post, 0, n - 1, pIndex);
+    return build(in, post, 0, n - 1, rootIdx);
 }
 
 
