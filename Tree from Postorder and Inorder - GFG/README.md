@@ -1,5 +1,5 @@
 # Tree from Postorder and Inorder
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given <strong>inorder </strong>and <strong>postorder</strong> traversals of a Binary Tree in the arrays <strong>in[]</strong> and <strong>post[]</strong> respectively. The task is to construct the binary tree from these traversals.</span></p>
 
