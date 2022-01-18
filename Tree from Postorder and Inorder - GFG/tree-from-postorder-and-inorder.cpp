@@ -75,9 +75,8 @@ Node *build(int in[], int post[], int s, int e, int &rootIdx)
 
     Node *node = new Node(post[rootIdx--]);
     
-
-    if (s == e)
-        return node;
+    // if (s == e)
+    //     return node;
 
     int pivot = m[node->data];
 
