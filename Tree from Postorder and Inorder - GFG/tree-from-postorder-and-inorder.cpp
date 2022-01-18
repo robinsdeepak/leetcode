@@ -68,13 +68,14 @@ struct Node
 
 unordered_map<int,int> m;
 
-Node *buildUtil(int in[], int post[], int inStrt, int inEnd, int *pIndex)
+Node *buildUtil(int in[], int post[], int inStrt, int inEnd, int &pIndex)
 {
     if (inStrt > inEnd)
         return NULL;
 
-    Node *node = new Node(post[*pIndex]);
-    (*pIndex)--;
+    Node *node = new Node(post[pIndex]);
+    // (*pIndex)--;
+    pIndex--;
 
     if (inStrt == inEnd)
         return node;
@@ -96,7 +97,7 @@ Node *buildTree(int in[], int post[], int n)
     
     int pIndex = n - 1;
     
-    return buildUtil(in, post, 0, n - 1, &pIndex);
+    return buildUtil(in, post, 0, n - 1, pIndex);
 }
 
 
