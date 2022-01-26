@@ -1,16 +1,12 @@
 class Solution:
     def repeatedStringMatch(self, a: str, b: str) -> int:
         
-        count = 0
-        s = ""
-        while (len(s) < len(b)):
-            s += a
-            count += 1
+        count = -(-(len(b)) // len(a))
+        s = a * count
         
-        if b in s:
-            return count
-        elif b in s + a:
-            return count + 1
-        else:
-            return -1
+        for i in range(2):
+            if b in (s + a * i):
+                return count + i
+        return -1
+
     
