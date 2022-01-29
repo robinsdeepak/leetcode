@@ -21,15 +21,17 @@ class Solution{
 public:
     bool isSafe(vector<int> &board, int n, int x, int y)
     {
+        board[x] = y;
+
         for (int i=0; i<n; i++)
         {
-            if (board[i] == y)
+            if (i != x && board[i] == y)
             {
+                board[x] = -1;
                 return false;
             }
         }
         
-        board[x] = y;
         for (int i=0; i<n; i++)
         {
             for (int j=i+1; j<n; j++)
@@ -58,9 +60,7 @@ public:
         
         for (int i=0; i<n; i++)
         {
-            bool safe = isSafe(board, n, x, i);
-
-            if (safe)
+            if (isSafe(board, n, x, i))
             {
                 board[x] = i;
                 solve(ans, board, n, x + 1);
