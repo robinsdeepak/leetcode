@@ -109,11 +109,15 @@ class Solution{
     {
         if (!root) return 0;
         if (dp.find(root) != dp.end()) return dp[root];
+        
+        Node *left = root->left;
+        Node *right = root->right;
+        
         int solution0 = root->data + 
-                (root->left ? solve(root->left->left) + solve(root->left->right) : 0) + 
-                (root->right ? solve(root->right->left) + solve(root->right->right) : 0);
+                (left ? solve(left->left) + solve(left->right) : 0) + 
+                (right ? solve(right->left) + solve(right->right) : 0);
     
-        int solution1 = solve(root->left) + solve(root->right);
+        int solution1 = solve(left) + solve(right);
         
         
         return dp[root] = max(solution0, solution1);
