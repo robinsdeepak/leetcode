@@ -29,33 +29,6 @@ class Solution:
                 ans.extend(self.level_dict[level][row])
         return ans
 
-"""
- map<int, vector<pair<Node*, int>>> m;
-    
-    void solve(Node *root, int x, int y)
-    {
-        if (!root) return;
-        
-        m[y].push_back(make_pair(root, x));
-        
-        solve(root->left, x + 1, y - 1);
-        solve(root->right, x + 1, y + 1);
-    }
-    vector<int> verticalOrder(Node *root)
-    {
-        solve(root, 0, 0);
-        vector<int> v;
-        for (auto it: m)
-        {
-            for (auto el: it.second)
-            {
-                v.push_back(el.first->data);
-            }
-        }
-        return v;
-    }
-
-"""
 
 
 #{ 
