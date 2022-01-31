@@ -4,7 +4,7 @@ class Solution:
     
     def solve(self, candidates, target, curr):
         if (target == 0):
-            self.ans.append(curr.copy())
+            self.ans.append(curr)
             return
         if (target < 0):
             return 
