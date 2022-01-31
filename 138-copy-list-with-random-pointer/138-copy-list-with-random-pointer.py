@@ -11,11 +11,9 @@ class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         if not head:
             return head
-        
-        m = {None:None}
-        
+                
         ptr = head
-        
+        m = {}
         while (ptr):
             tmp = Node(ptr.val)
             m[ptr] = tmp
@@ -23,8 +21,8 @@ class Solution:
         
         ptr = head
         while (ptr):
-            m[ptr].next = m[ptr.next]
-            m[ptr].random = m[ptr.random]
+            m[ptr].next = m.get(ptr.next)
+            m[ptr].random = m.get(ptr.random)
             ptr = ptr.next
             
         return m[head]
