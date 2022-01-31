@@ -2,26 +2,17 @@ class Solution:
     def __init__(self):
         self.ans = []
     
-    def solve(self, candidates, target, curr, curr_sum, i):
-        if (curr_sum == target):
+    def solve(self, candidates, target, curr):
+        if (target == 0):
             self.ans.append(curr.copy())
             return
-            
-        if (i == len(candidates)):
-            return
-        self.solve(candidates, target, curr, curr_sum, i + 1)
+        if (target < 0):
+            return 
         
-        count = 0
-        while ((curr_sum + candidates[i]) <= target):
-            count += 1
-            curr.append(candidates[i])
-            curr_sum += candidates[i]
-            self.solve(candidates, target, curr, curr_sum, i + 1)
-            
-        for _ in range(count):
-            curr.pop()
+        for i in range(len(candidates)):
+            self.solve(candidates[i:], target-candidates[i], curr+[candidates[i]])
     
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         candidates.sort()
-        self.solve(candidates, target, [], 0, 0)
+        self.solve(candidates, target, [])
         return self.ans
