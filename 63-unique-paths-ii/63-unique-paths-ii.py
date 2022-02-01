@@ -1,31 +1,27 @@
-class Solution:
-    def __init__(self):
-        self.ans = 0
-        self.map = {}
-    
-    def set_val(self, x, y, val):
-        if x not in self.map:
-            self.map[x] = {}
-        self.map[x][y] = val
-    
-    def get_val(self, x, y):
-        return self.map.get(x, {}).get(y)
-    
-    def solve(self, grid, x, y):
-        # print(x, y)
-        if (x == 0 and y == 0):
-            return 1
-        if (x < 0 or y < 0 or grid[x][y] == 1):
+class Solution:    
+    def uniquePathsWithObstacles(self, grid: List[List[int]]) -> int:
+        if (grid[0][0] or grid[-1][-1]):
             return 0
         
-        if (self.get_val(x, y)):
-            return self.get_val(x, y)
+        rows = len(grid)
+        cols = len(grid[0])
         
-        val = self.solve(grid, x - 1, y) + self.solve(grid, x, y - 1)
-        self.set_val(x, y, val)
-        return val
-    
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        if (obstacleGrid[0][0] == 1):
-            return 0
-        return self.solve(obstacleGrid, len(obstacleGrid)-1, len(obstacleGrid[0])-1)
+        dp = [[0 for i in range(cols)] for j in range(rows)]
+        
+        val = 1
+        for i in range(rows):
+            if (grid[i][0]):
+                val = 0
+            dp[i][0] = val
+        
+        val = 1
+        for i in range(cols):
+            if (grid[0][i]):
+                val = 0
+            dp[0][i] = val
+        # print(dp)
+        for i in range(1, rows):
+            for j in range(1, cols):
+                dp[i][j] = 0 if grid[i][j] else dp[i-1][j] + dp[i][j-1]
+            
+        return dp[rows-1][cols-1]
