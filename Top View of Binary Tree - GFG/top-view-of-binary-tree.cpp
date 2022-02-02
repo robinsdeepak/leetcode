@@ -102,35 +102,41 @@ struct Node
 class Solution
 {
     public:
-    map<int,map<int,vector<int>>> m;
-    map<int,int> mt;
-
-    void solve(Node *root, int x, int y)
-    {
-        if (!root) return;
-        
-        m[y][x].push_back(root->data);
-        // if (m.find(y) == m.end()) m[y] = root->data;
-        
-        solve(root->left, x + 1, y - 1);
-        solve(root->right, x + 1, y + 1);
-    }
     
     vector<int> topView(Node *root)
     {
-        solve(root, 0, 0);
-        vector<int> v;
-        for (auto it1: m)
+        queue<pair<int,Node*>> q;
+        
+        q.push({0, root});
+        map<int,int> m;
+        
+        while (!q.empty())
         {
-            for (auto it2: it1.second)
+            int n = q.size();
+            while(n--)
             {
-                for (int x: it2.second) 
+                auto top = q.front();
+                q.pop();
+                
+                int hd = top.first;
+                Node *node = top.second;
+                
+                if (m.find(hd) == m.end())
                 {
-                    v.push_back(x);
-                    break;
+                    // cout << hd << " " << node->data << endl;
+                    m[hd] = node->data;
                 }
-                break;
+                
+                if (node->left)
+                    q.push({hd-1, node->left});
+                if (node->right)
+                    q.push({hd+1, node->right});
             }
+        }
+        vector<int> v;
+        for (auto it: m)
+        {
+            v.push_back(it.second);
         }
         return v;
     }
