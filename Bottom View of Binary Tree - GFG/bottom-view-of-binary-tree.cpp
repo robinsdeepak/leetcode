@@ -98,7 +98,7 @@ class Solution {
     public:
     vector<int> bottomView(Node *root)
     {
-queue<pair<int,Node*>> q;
+        queue<pair<int,Node*>> q;
         
         q.push({0, root});
         map<int,int> m;
