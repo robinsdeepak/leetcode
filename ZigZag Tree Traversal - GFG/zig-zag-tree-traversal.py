@@ -34,16 +34,6 @@ class Solution:
         return arr
         
 
-#   1
-#  2   3
-# 4 5 6 7 
-
-# 1 3 2
-
-# 2 3
-# 4 5 6 7
-
-
 #{ 
 #  Driver Code Starts
 #Initial Template for Python 3
