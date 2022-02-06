@@ -5,9 +5,7 @@
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
-    curr_path = []
-    
+class Solution(object):    
     def getPath(self, root, target, curr_path):
         if root is None:
             return False
@@ -36,15 +34,12 @@ class Solution(object):
         q_path = []
         self.getPath(root, q, q_path)
         
-        # print([x.val for x in p_path])
-        # print([x.val for x in q_path])
-        
-        c = root
+        lca = root
         
         for i in range(min(len(p_path), len(q_path))):
             if (p_path[i] == q_path[i]):
-                c = p_path[i]
+                lca = p_path[i]
             else:
                 break
         
-        return c
+        return lca
