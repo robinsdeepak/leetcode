@@ -34,15 +34,14 @@ class Solution(object):
             for i in range(n):
                 node = q1[i]
                 
-                temp = (
+                max_path_sum = max(
                     node.val,
                     node.val + self.m[node.left],
                     node.val + self.m[node.right],
                     node.val + self.m[node.left] + self.m[node.right],
                     max_path_sum
                 )
-                # print(temp)
-                max_path_sum = max(temp)
+                
                 if (node.left):
                     q2.append(node.left)
                 if (node.right):
