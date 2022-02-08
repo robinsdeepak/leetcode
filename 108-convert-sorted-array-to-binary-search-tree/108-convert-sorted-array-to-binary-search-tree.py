@@ -10,15 +10,6 @@ class Solution:
             return None
         elif (start == end):
             return TreeNode(nums[start])
-        elif (end - start == 2):
-            root = TreeNode(nums[start + 1])
-            root.left = TreeNode(nums[start])
-            root.right = TreeNode(nums[end])
-            return root
-        elif (end - start == 1):
-            root = TreeNode(nums[end])
-            root.left = TreeNode(nums[start])
-            return root
         else:
             mid = (end + start) // 2
             root = TreeNode(nums[mid])
