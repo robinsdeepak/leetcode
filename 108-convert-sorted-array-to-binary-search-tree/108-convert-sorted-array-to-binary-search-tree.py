@@ -8,8 +8,6 @@ class Solution:
     def build(self, nums, start, end):
         if (start > end):
             return None
-        elif (start == end):
-            return TreeNode(nums[start])
         else:
             mid = (end + start) // 2
             root = TreeNode(nums[mid])
