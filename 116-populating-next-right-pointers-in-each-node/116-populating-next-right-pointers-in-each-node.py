@@ -9,27 +9,15 @@ class Node:
 """
 
 class Solution:
-    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        if not root:
-            return None
-        
-        q1 = [root]
-        
-        while (len(q1)):
-            n = len(q1)
-            q2 = []
-            
-            for i in range(n):
-                node = q1[i]
-                if i < n - 1:
-                    node.next = q1[i+1]
-                
-                if node.left:
-                    q2.append(node.left)
-                if node.right:
-                    q2.append(node.right) 
-            q1 = q2
-        
-        return root
+    def connect(self, root):
+        root1 = root
+        while root and root.left:
+            next_ = root.left
+            while root:
+                root.left.next = root.right
+                root.right.next = root.next and root.next.left
+                root = root.next
+            root = next_
+        return root1
 
-
+        
