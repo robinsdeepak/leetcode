@@ -1,10 +1,4 @@
 class Solution:
   
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        n = len(nums)
-        output = [[]]
-        
-        for num in nums:
-            output += [curr + [num] for curr in output]
-        
-        return output
+        return reduce((lambda ls, x: ls + list(map(lambda y: y+[x], ls))), nums, [[]])
