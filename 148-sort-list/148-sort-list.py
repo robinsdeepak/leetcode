@@ -15,7 +15,7 @@ class Solution:
             list2.next = self.merge(list1, list2.next)
             return list2
 
-    def mergeSort(self, head):
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head or not head.next:
             return head
         
@@ -36,18 +36,8 @@ class Solution:
         list2 = slow.next
         slow.next = None
         
-        l1 = self.mergeSort(list1)
-        l2 = self.mergeSort(list2)
+        l1 = self.sortList(list1)
+        l2 = self.sortList(list2)
 
         return self.merge(l1, l2)
-    
-    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        
-        n = 0
-        ptr = head
-        while ptr:
-            n += 1
-            ptr = ptr.next
-        
-        return self.mergeSort(head)
 
