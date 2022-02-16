@@ -36,19 +36,10 @@ class Solution:
         list2 = slow.next
         slow.next = None
         
-        # self.printList(list1)
-        # self.printList(list1)
-        
         l1 = self.mergeSort(list1)
         l2 = self.mergeSort(list2)
 
         return self.merge(l1, l2)
-    
-    def printList(self, l):
-        while l:
-            print(l.val, end=" ")
-            l = l.next
-        print()
     
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
