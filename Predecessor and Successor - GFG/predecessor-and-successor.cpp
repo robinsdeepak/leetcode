@@ -96,7 +96,6 @@ int main()
 }// } Driver Code Ends
 
 
-
 void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
 {
     if (!root) return;
@@ -105,3 +104,5 @@ void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
     if (root->key > key and not suc) suc = root;
     findPreSuc(root->right, pre, suc, key);
 }
+
+
