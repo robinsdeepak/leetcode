@@ -4,27 +4,28 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+MAX = float('inf')
+MIN = float('-inf')
+
+
 class Solution:
-    def maxSumBST(self, root: Optional[TreeNode]) -> int:
+    
+    def helper(self, root):
         if not root:
-            return 0
-        
-        self.s = 0
-        
-        def helper(cur):
-            if not cur:
-                return (0, float('inf'), float('-inf'))
-            
-            a, amin, amax = helper(cur.left) 
-            b, bmin, bmax = helper(cur.right)
-            
-            if a is not None and b is not None:
-                if cur.val > amax and cur.val < bmin:
-                    s = cur.val + a + b
-                    self.s = max(self.s, s)
-                    return s, min(cur.val, amin), max(cur.val, bmax)
-            return (None, None, None)
-        
-        helper(root)
-        
-        return self.s
+            return (0, MAX, MIN)
+
+        a, amin, amax = self.helper(root.left)
+        b, bmin, bmax = self.helper(root.right)
+
+        if a is not None and b is not None:
+            if amax < root.val < bmin:
+                s = a + b + root.val
+                self.ans = max(self.ans, s)
+                return (s, min(amin, root.val), max(bmax, root.val))
+        return (None, None, None)
+    
+    def maxSumBST(self, root: Optional[TreeNode]) -> int:
+        self.ans = 0
+        self.helper(root)
+        return self.ans
