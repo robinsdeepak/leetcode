@@ -50,20 +50,19 @@ class Codec:
             q2 = []
             for node in q1:
                 left = TreeNode(int(nodes[index])) if nodes[index] != "N" else None
+                node.left = left
+                if left: q2.append(left)
                 index += 1
-                if (index >= len(nodes)):
-                    break
+                
+                if (index >= len(nodes)): break
+                    
                 right = TreeNode(int(nodes[index])) if nodes[index] != "N" else None
                 index += 1
-                
-                node.left = left
                 node.right = right
+                if right: q2.append(right)
                 
-                if left:
-                    q2.append(left)
-                if right:
-                    q2.append(right)
             q1 = q2
+
         return root
         
 
