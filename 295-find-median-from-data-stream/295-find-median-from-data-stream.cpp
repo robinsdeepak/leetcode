@@ -1,5 +1,3 @@
-#include <cstdlib>
-
 class MedianFinder {
 public:
     /** initialize your data structure here. */
@@ -12,22 +10,23 @@ public:
     }
     
     void addNum(int x) {
-        //Adding Number to first set only if its empty or if number less than max element of set 1
-        if(s1.size()==0||x<*(prev(s1.end()))){
+        // Adding Number to first set only if its empty 
+        // or if number less than max element of set 1
+        if(s1.size()==0 || x < *(prev(s1.end()))) {
 	        s1.insert(x);
 	    }
-	    else s2.insert(x);
+	    else {
+            s2.insert(x);            
+        } 
         //Adjusting sizes so that difference is never greater than 1
-	    if(abs(int(s1.size()-s2.size()))>1){
-	        if(s1.size()>s2.size()){
-	            s2.insert(*(prev(s1.end())));
-	            s1.erase(prev(s1.end()));
-	        }
-	        else{
-	            s1.insert(*(s2.begin()));
-	            s2.erase(s2.begin());
-	        }
-	    }
+        if(s1.size()>s2.size() + 1){
+            s2.insert(*(prev(s1.end())));
+            s1.erase(prev(s1.end()));
+        }
+        else if (s1.size() + 1 < s2.size()){
+            s1.insert(*(s2.begin()));
+            s2.erase(s2.begin());
+        }
     }
     
     double findMedian() {
