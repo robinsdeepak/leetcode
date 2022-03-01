@@ -2,26 +2,24 @@
 
 class Solution:
     
-    def __init__(self):
-        self.visited = {}
-        self.traversal = []
-    
-    def dfs(self, idx, adj):
-        if self.visited.get(idx, False):
-            return 
-        
-        self.traversal.append(idx)
-        self.visited[idx] = True
-        
-        for idxx in adj[idx]:
-            self.dfs(idxx, adj)
-        
-        
     #Function to return a list containing the DFS traversal of the graph.
     def dfsOfGraph(self, V, adj):
-        self.dfs(0, adj)
+        visited = {}
+        traversal = []
+    
+        def dfs(idx, adj):
+            if visited.get(idx, False):
+                return 
+            
+            traversal.append(idx)
+            visited[idx] = True
+            
+            for idxx in adj[idx]:
+                dfs(idxx, adj)
+            
+        dfs(0, adj)
         
-        return self.traversal
+        return traversal
         
 
 #{ 
