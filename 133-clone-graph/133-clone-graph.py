@@ -25,7 +25,4 @@ class Solution:
         if node is None:
             return None
         
-        if len(node.neighbors) == 0:
-            return Node(node.val)
-        
         return self.dfs(node)
