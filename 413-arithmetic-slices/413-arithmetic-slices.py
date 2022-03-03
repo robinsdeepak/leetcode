@@ -3,10 +3,14 @@ class Solution:
         n = len(nums)
         if n < 3: return 0
         
-        dp = [0] * n
-        
+        last = 0
+        total = 0
         for i in range(2, n):
+            total += last
             if nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 2]:
-                dp[i] = dp[i - 1] + 1
+                last += 1
+            else:
+                last = 0
         
-        return sum(dp)
+        return total + last
+
