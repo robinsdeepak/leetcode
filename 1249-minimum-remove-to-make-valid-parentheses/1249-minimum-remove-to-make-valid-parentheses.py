@@ -25,5 +25,5 @@ class Solution:
                 res += char
             
         
-        return "".join(reversed(res))
+        return res[::-1]
 
