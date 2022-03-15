@@ -1,9 +1,6 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        fc = 0
-        bc = 0
-        
-        s2 = ""
+        fc, bc, res = 0, 0, ""
         
         for char in s:
             fc += char == '('
@@ -12,26 +9,21 @@ class Solution:
             if fc < bc:
                 bc -= 1
             else:
-                s2 += char
+                res += char
             
-#             print(s2)
+        s = res
+    
+        fc, bc, res = 0, 0, ""
         
-#         print("===========================")
-
-        fc, bc = 0, 0
-        s = s2
-        s2 = ""
-        
-        for char in s[::-1]:
+        for char in reversed(s):
             fc += char == '('
             bc += char == ')'
             
             if fc > bc:
                 fc -= 1
             else:
-                s2 += char
+                res += char
             
-            # print(s2)
         
-        return s2[::-1]
+        return "".join(reversed(res))
 
