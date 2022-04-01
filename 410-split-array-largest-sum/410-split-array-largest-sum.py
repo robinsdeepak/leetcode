@@ -1,23 +1,35 @@
+def check(arr, max_sum, sub_arr_count):
+    count = 1
+    curr = 0
+    
+    for x in arr:
+        if curr + x <= max_sum:
+            curr += x
+        else:
+            curr = x
+            count += 1
+        
+        if count > sub_arr_count:
+            return False
+    
+    return count <= sub_arr_count
+    
+
 class Solution:
     def splitArray(self, nums: List[int], m: int) -> int:
         n = len(nums)
-        prefix = [0]
-        for x in nums: prefix.append(prefix[-1] + x)
+        high = sum(nums)
+        low = max(nums)
         
-        @functools.lru_cache(None)
-        def solve(idx, scount):
-            if scount == 1:
-                return prefix[-1] - prefix[idx]
+        ans = high
         
-            mlss = prefix[-1]
-            for i in range(idx, n - scount + 1):
-                first_split_sum = prefix[i + 1] - prefix[idx]
-                largest_split_sum = max(first_split_sum, solve(i + 1, scount - 1))
-                mlss = min(mlss, largest_split_sum)
-
-                if first_split_sum >= mlss:
-                    break
+        while (low <= high):
+            mid = (low + high) // 2
             
-            return mlss
-            
-        return solve(0, m)
+            if (check(nums, mid, m)):
+                ans = min(ans, mid)
+                high = mid - 1
+            else:
+                low = mid + 1
+        
+        return ans
