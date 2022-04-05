@@ -1,25 +1,23 @@
 class Solution:
     def isCycle(self, V, adj):
-        # print(V)
-        # print(adj)
-        visited = {};
-        def isCycleRec(i, parent):
-            visited[i] = True
-            for a in adj[i]:
+        visited = {}
+        def isCycleRec(v, parent):
+            visited[v] = True
+            for a in adj[v]:
                 if not visited.get(a):
-                    if(isCycleRec(a, i)):
+                    if isCycleRec(a, v):
                         return True
-                elif (a != parent):
+                elif a != parent:
                     return True
             return False
-
-        for k in range(V):
-            if not visited.get(k):
-                if (isCycleRec(k, -1)):
+        
+        for i in range(V):
+            if not visited.get(i):
+                if isCycleRec(i, -1):
                     return True
         return False
-
-
+        
+        
 #{ 
 #  Driver Code Starts
 if __name__ == '__main__':
