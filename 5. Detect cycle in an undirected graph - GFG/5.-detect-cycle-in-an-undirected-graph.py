@@ -1,20 +1,26 @@
 class Solution:
     def isCycle(self, V, adj):
         visited = {}
-        def isCycleRec(v, parent):
-            visited[v] = True
-            for a in adj[v]:
-                if not visited.get(a):
-                    if isCycleRec(a, v):
-                        return True
-                elif a != parent:
-                    return True
-            return False
-        
+
+        # for i in range(V):
+        #     visited[i] = True
+        #     q.append((i, -1))
+            
         for i in range(V):
-            if not visited.get(i):
-                if isCycleRec(i, -1):
-                    return True
+            visited[i] = True
+            q = [(i, -1)]
+            while len(q):
+                q2 = []
+                for v, p in q:
+                    for a in adj[v]:
+                        if not visited.get(a):
+                            visited[a] = True
+                            q2.append((a, v))
+                        elif a != p and p != -1:
+                            return True
+                q = q2
+
+
         return False
         
         
