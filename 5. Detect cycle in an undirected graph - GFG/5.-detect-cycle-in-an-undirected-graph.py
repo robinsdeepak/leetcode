@@ -1,14 +1,11 @@
 class Solution:
     def isCycle(self, V, adj):
         visited = {}
-
-        # for i in range(V):
-        #     visited[i] = True
-        #     q.append((i, -1))
-            
+        
         for i in range(V):
             visited[i] = True
             q = [(i, -1)]
+            
             while len(q):
                 q2 = []
                 for v, p in q:
@@ -19,7 +16,6 @@ class Solution:
                         elif a != p and p != -1:
                             return True
                 q = q2
-
 
         return False
         
