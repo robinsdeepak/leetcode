@@ -1,13 +1,7 @@
-struct compare {
-    bool operator()(int a, int b) {
-        return a < b;
-    }
-};
-
 class Solution {
 public:
     int lastStoneWeight(vector<int>& stones) {
-        priority_queue<int, vector<int>, compare> pq;
+        priority_queue<int, vector<int>> pq;
         
         for (int x: stones) {
             pq.push(x);
@@ -18,9 +12,9 @@ public:
             pq.pop();
             int y = pq.top();
             pq.pop();
-            
+
             if (x != y) {
-                pq.push(abs(y - x));
+                pq.push(x - y);
             }
         }
         
