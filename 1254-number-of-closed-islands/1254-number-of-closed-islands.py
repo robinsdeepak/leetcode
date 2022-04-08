@@ -2,7 +2,7 @@ class Solution:
     def closedIsland(self, grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])
         
-        def traverse(r, c):
+        def bfs(r, c):
             q1 = [(r, c)]
             cn = 1
             
@@ -27,9 +27,6 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 0:
-                    t = traverse(i, j)
-                    if (t):
-                        count += 1
-                        # print(i, j, t)
-        
+                    count += bfs(i, j)
+
         return count
