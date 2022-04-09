@@ -3,11 +3,11 @@ class Solution:
         freq = {}
         for x in nums:
             freq[x] = freq.get(x, 0) + 1
-        
-        rf = list(sorted(freq.items(), key=lambda x: x[1], reverse=True))
-        
+                
         ans = []
-        for i in range(k):
-            ans.append(rf[i][0])
-        
+        for i in sorted(freq.items(), key=lambda x: x[1], reverse=True):
+            ans.append(i[0])
+            if len(ans) == k:
+                break
+    
         return ans
