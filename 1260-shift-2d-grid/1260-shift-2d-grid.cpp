@@ -14,11 +14,19 @@ public:
         }
         
         k = k % t;
-        
-        for (int i=0; i<k; i++) {
-            int b = q.back();
-            q.pop_back();
-            q.push_front(b);
+        if (k <= t / 2) {
+            for (int i=0; i<k; i++) {
+                int b = q.back();
+                q.pop_back();
+                q.push_front(b);
+            }
+        } else {
+            k = t - k;
+            for (int i=0; i<k; i++) {
+                int f = q.front();
+                q.pop_front();
+                q.push_back(f);
+            }
         }
         
         for (int i=0; i<m; i++) {
