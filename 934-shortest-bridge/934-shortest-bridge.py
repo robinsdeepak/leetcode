@@ -12,20 +12,19 @@ class Solution:
         
         while len(q):
             l1 += q
-            q2 = []
+            q2 = set()
             for i, j, d in q:
                 grid[i][j] = 2
                 nbrs = [(i + 1, j), (i, j + 1), (i - 1, j), (i, j - 1)]
                 
                 for x, y in nbrs:
                     if 0 <= x < m and 0 <= y < n and grid[x][y] == 1:
-                        q2.append((x, y, 2))
-            q = set(q2)
-        # print(l1)
+                        q2.add((x, y, 2))
+            q = q2
 
         q = l1 
         while len(q):
-            q2 = []
+            q2 = set()
             for i, j, d in q:
                 grid[i][j] = d
                 nbrs = [(i + 1, j), (i, j + 1), (i - 1, j), (i, j - 1)]
@@ -34,7 +33,6 @@ class Solution:
                         if grid[x][y] == 1:
                             return d - 2
                         if grid[x][y] == 0:
-                            q2.append((x, y, d + 1))
-            q = set(q2)
-#         print('2')
+                            q2.add((x, y, d + 1))
+            q = q2
         return -1
