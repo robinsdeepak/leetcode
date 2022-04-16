@@ -1,10 +1,10 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
         n = len(graph)
-        sn = set()
+        sn = {}
         for i in range(n):
             if len(graph[i]) == 0:
-                sn.add(i)
+                sn[i] = True
         
         flag = True
         
@@ -14,10 +14,10 @@ class Solution:
                 if i in sn: 
                     continue
                 for j in graph[i]:
-                    if j not in sn:
+                    if not sn.get(j):
                         break
                 else:
-                    sn.add(i)
+                    sn[i] = True
                     flag = True
 
         return sorted(list(sn))
