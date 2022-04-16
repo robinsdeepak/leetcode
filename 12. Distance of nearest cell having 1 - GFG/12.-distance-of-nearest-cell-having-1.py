@@ -14,7 +14,7 @@ class Solution:
 		            dist[i][j] = 0
         
         while len(q):
-            q2 = []
+            q2 = set()
             
             for i, j, d in q:
                 dist[i][j] = min(dist[i][j], d)
@@ -23,7 +23,7 @@ class Solution:
                 
                 for x, y in nbrs:
                     if 0 <= x < m and 0 <= y < n and dist[x][y] == inf:
-                        q2.append((x, y, d + 1))
+                        q2.add((x, y, d + 1))
             q = q2
             
         # for r in dist:
