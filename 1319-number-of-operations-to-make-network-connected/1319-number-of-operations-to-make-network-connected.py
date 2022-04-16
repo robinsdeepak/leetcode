@@ -5,16 +5,16 @@ class Solution:
         if m < n - 1:
             return -1
         
+        # creating adjacency list
         adj = [[] for _ in range(n)]
         
         for i, j in connections:
             adj[i].append(j)
             adj[j].append(i)
-        # print(adj)
+
         visited = [False] * n
         
         def dfs(i):
-            # print(i, adj[i])
             for j in adj[i]:
                 if not visited[j]:
                     visited[j] = True
@@ -26,6 +26,4 @@ class Solution:
                 count += 1
                 visited[i] = True
                 dfs(i)
-        dfs(0)
-        # print(n, sum(visited), count)
         return n - sum(visited) + count - 1
