@@ -8,15 +8,15 @@ class Solution:
     def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         self.curr = 0
 
-        def postorder(root):
+        def traverse(root):
             if not root:
                 return 0
-            postorder(root.right)
+            traverse(root.right)
             self.curr = self.curr + root.val
             root.val = self.curr
-            postorder(root.left)
+            traverse(root.left)
         
-        postorder(root)
+        traverse(root)
         
         return root
 
