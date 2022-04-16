@@ -6,13 +6,15 @@ class Solution:
         for i in range(n):
             adj[manager[i]].append(i)
         
-        def dfs(i, d):
-            nonlocal mt
-            mt = max(mt, d)
-            for j in adj[i]:
-                dfs(j, d + informTime[j])
-                
+        q = [(-1, 0)]
         
-        dfs(-1, 0)
-
+        while len(q):
+            q2 = []
+            
+            for i, d in q:
+                mt = max(mt, d)
+                for j in adj[i]:
+                    q2.append((j, d + informTime[j]))
+            q = q2
+            
         return mt
