@@ -6,11 +6,11 @@ class Solution:
             return -1
         
         # creating adjacency list
-        adj = [[] for _ in range(n)]
+        adj = [set() for _ in range(n)]
         
         for i, j in connections:
-            adj[i].append(j)
-            adj[j].append(i)
+            adj[i].add(j)
+            adj[j].add(i)
 
         visited = [False] * n
         
@@ -26,4 +26,7 @@ class Solution:
                 count += 1
                 visited[i] = True
                 dfs(i)
+
         return n - sum(visited) + count - 1
+
+    
