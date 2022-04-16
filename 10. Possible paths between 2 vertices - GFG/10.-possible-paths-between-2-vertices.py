@@ -6,7 +6,6 @@ class Solution:
     def countPaths(self, V, adj, source, destination):
         
         count = 0
-        visited = {}
         
         def dfs(i):
             if i == destination:
@@ -15,14 +14,11 @@ class Solution:
                 return
                 
             for j in adj[i]:
-                if not visited.get(j):
-                    # visited[j] = True
-                    dfs(j)
+                dfs(j)
         
-        # visited[source] = True
         dfs(source)
-        
         return count
+    
         
 #{ 
 #  Driver Code Starts
