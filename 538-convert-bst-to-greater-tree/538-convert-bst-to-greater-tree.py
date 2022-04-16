@@ -12,7 +12,7 @@ class Solution:
             if not root:
                 return 0
             traverse(root.right)
-            self.curr = self.curr + root.val
+            self.curr += root.val
             root.val = self.curr
             traverse(root.left)
         
