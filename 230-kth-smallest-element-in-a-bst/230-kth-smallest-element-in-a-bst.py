@@ -10,18 +10,15 @@ class Solution:
         ans = -1
         
         def inorder(node):
-            if not node:
+            nonlocal k
+            if not node or k == 0:
                 return
             
-            nonlocal k
-            
-            if k >= 0:
-                inorder(node.left)
-                k -= 1
-                nonlocal ans
-                if k == 0: ans = node.val
-                # print(ans, k)
-                inorder(node.right)
+            inorder(node.left)
+            k -= 1
+            nonlocal ans
+            if k == 0: ans = node.val
+            inorder(node.right)
         
         inorder(root)
         return ans
