@@ -1,22 +1,27 @@
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        graph = defaultdict(list)
-        visited = set()
-        # building undirected graph
-        for s, e in connections:
-            graph[s].append((e, True))
-            graph[e].append((s, False))
+        g = [set() for _ in range(n)]
         
-        def dfs(currCity):
-            count = 0
-            if currCity in visited:
+        for i, j in connections:
+            g[i].add((j, True))
+            g[j].add((i, False))
+        
+        
+        visited_from = set()
+        self.count = 0
+        
+        def dfs(i):
+            if i in visited_from:
                 return
-            visited.add(currCity)
-            for neigh, orig in graph[currCity]:
-                if neigh not in visited:
-                    if orig == True:
-                        count += 1
-                    count += dfs(neigh)
-            return count
-			
-        return dfs(0)
+            
+            visited_from.add(i)
+            
+            for j, isCon in g[i]:
+                if j not in visited_from:
+                    if isCon:
+                        self.count += 1
+                    dfs(j)
+
+        dfs(0)
+        
+        return self.count
