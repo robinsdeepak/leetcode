@@ -1,10 +1,10 @@
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        g = [set() for _ in range(n)]
+        g = [[] for _ in range(n)]
         
         for i, j in connections:
-            g[i].add((j, True))
-            g[j].add((i, False))
+            g[i].append((j, True))
+            g[j].append((i, False))
         
         
         visited_from = set()
