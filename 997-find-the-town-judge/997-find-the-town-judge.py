@@ -1,5 +1,8 @@
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        if len(trust) < n-1:
+            return -1
+        
         trust_to = [0 for _ in range(n + 1)]
         trusted_by = [0 for _ in range(n + 1)]
         
