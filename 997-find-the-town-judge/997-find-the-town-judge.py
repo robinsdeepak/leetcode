@@ -1,7 +1,7 @@
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
-        trust_to = {i : 0 for i in range(1, n + 1)}
-        trusted_by = {i : 0 for i in range(1, n + 1)}
+        trust_to = [0 for _ in range(n + 1)]
+        trusted_by = [0 for _ in range(n + 1)]
         
         for i, j in trust:
             trust_to[i] += 1
