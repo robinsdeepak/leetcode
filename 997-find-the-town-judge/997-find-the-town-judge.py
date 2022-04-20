@@ -14,3 +14,4 @@ class Solution:
             if trust_to[i] == 0 and trusted_by[i] == n - 1:
                 return i
         return -1
+
