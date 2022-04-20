@@ -1,15 +1,14 @@
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
-        g = [[0] * n for _ in range(n)]
+        trust_to = defaultdict(int)
+        trusted_by = defaultdict(int)
         
         for i, j in trust:
-            g[i - 1][j - 1] = 1
-                
+            trust_to[i] += 1
+            trusted_by[j] += 1
         
-        for i in range(n):
-            if sum(g[i]) == 0:
-                s = sum(map(lambda x: x[i], g))
-                if s == n - 1:
-                    return i + 1
-            
+        for i in range(1, n + 1):
+            if trust_to[i] == 0 and trusted_by[i] == n - 1:
+                return i
         return -1
+
