@@ -1,10 +1,10 @@
 class MyHashSet:
 
     def __init__(self):
-        self.data = [[] for _ in range(100)]
+        self.data = [[] for _ in range(1000)]
     
     def getHash(self, key):
-        return key % 100
+        return key % 1000
 
     def add(self, key: int) -> None:
         if not self.contains(key):
