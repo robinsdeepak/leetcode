@@ -2,26 +2,21 @@ class Solution:
     
     #Function to return list containing vertices in Topological order.
     def topoSort(self, V, adj):
-        ind = {i: 0 for i in range(V)}
-        for i in range(len(adj)):
+        st = []
+        visited = set()
+        
+        def dfs(i):
+            visited.add(i)
             for j in adj[i]:
-                ind[j] += 1
-        
-        q = [i for i, j in ind.items() if j == 0]
-        ans = []
-        while len(q):
-            q2 = []
+                if j not in visited:
+                    dfs(j)
+            st.append(i)
             
-            for i in q:
-                ans.append(i)
-                for j in adj[i]:
-                    ind[j] -= 1
-                    if ind[j] == 0:
-                        q2.append(j)
-            q = q2
-        
-        return ans
-
+        for i in range(V):
+            if i not in visited:
+                dfs(i)
+                
+        return list(reversed(st))
 
 
 #{ 
