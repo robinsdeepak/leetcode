@@ -5,8 +5,7 @@ class Solution:
     #Function to find sum of weights of edges of the Minimum Spanning Tree.
     def spanningTree(self, V, adj):
         mset = [False] * V
-        inf = float('inf')
-        keys = [inf] * V
+        keys = [float('inf')] * V
         keys[0] = 0
         ans = 0
 
@@ -16,18 +15,15 @@ class Solution:
             for j, w in adj[i]:
                 mat[i][j] = mat[j][i] = w
         
-        # for r in mat: print(r)
-        
         for i in range(V):
-            # print(keys, ans)
             minSpanId = -1
             for j in range(V):
                 if not mset[j] and (minSpanId == -1 or keys[minSpanId] > keys[j]):
                     minSpanId = j
-
+                    
             ans += keys[minSpanId]
             mset[minSpanId] = True
-            
+                
             for j in range(V):
                 if not mset[j] and mat[minSpanId][j]:
                     keys[j] = min(keys[j], mat[minSpanId][j])
