@@ -5,21 +5,22 @@ class Codec:
     def encode(self, longUrl: str) -> str:
         """Encodes a URL to a shortened URL.
         """
-        key = self.generateKey(6)
+        key = self.generateUniqueKey(6)
         self.map[key] = longUrl
-        return 'http://tinyurl.com/' + key
+        return key
 
     def decode(self, shortUrl: str) -> str:
         """Decodes a shortened URL to its original URL.
         """
-        key = shortUrl.split('/')[-1]
-        return self.map[key]
+        return self.map[shortUrl]
         
     def generateKey(self, n):
-        key = "".join(random.choices(string.ascii_lowercase + string.digits, k=n))
+        return "".join(random.choices(string.ascii_lowercase + string.digits, k=n))
+    
+    def generateUniqueKey(self, n):
+        key = self.generateKey(n)
         while key in self.map:
-            key = "".join(random.choices(string.ascii_lowercase + string.digits, n))
-        
+            key = self.generateKey(n)
         return key
         
 # Your Codec object will be instantiated and called as such:
