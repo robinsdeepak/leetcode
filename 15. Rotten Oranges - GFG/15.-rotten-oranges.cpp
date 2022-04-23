@@ -45,9 +45,10 @@ class Solution
                     int i = p2.first, j = p2.second;
                     if (i >= 0 and i < m and j >= 0 and j < n and grid[i][j] == 1) 
                     {
-                        grid[i][j] = 2;
                         freshCount--;
                         if (freshCount == 0) return t;
+                        
+                        grid[i][j] = 2;
                         q.push({i, j});
                     }
                 }
