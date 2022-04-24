@@ -3,11 +3,11 @@ class UndergroundSystem:
         self.persons = {}
         self.stationMap = {}
         
-    def checkIn(self, id_: int, st1: str, t: int) -> None:
+    def checkIn(self, id_, st1, t1):
         if not self.persons.get(id_):
-            self.persons[id_] = (st1, t)
+            self.persons[id_] = (st1, t1)
         
-    def checkOut(self, id_: int, st2: str, t2: int) -> None:
+    def checkOut(self, id_, st2, t2):
         st1, t1 = self.persons.get(id_)
         
         if not self.stationMap.get((st1, st2)):
@@ -21,7 +21,7 @@ class UndergroundSystem:
         self.stationMap[(st1, st2)] = (totalTime, count)
         del self.persons[id_]
         
-    def getAverageTime(self, st1: str, st2: str) -> float:
+    def getAverageTime(self, st1, st2):
         totalTime, count = self.stationMap.get((st1, st2))
         return totalTime / count
 
