@@ -1,39 +1,35 @@
+def find(ds, i):
+    if ds[i] == i:
+        return i
+    ds[i] = find(ds, ds[i])
+    return ds[i]
+
 class Solution:
     def smallestStringWithSwaps(self, s: str, pairs: List[List[int]]) -> str:
         n = len(s)
-        g = [[] for _ in range(n)]
+        
+        ds = [i for i in range(n)]
+        
         
         for i, j in pairs:
-            g[i].append(j)
-            g[j].append(i)
+            r1 = find(ds, i)
+            r2 = find(ds, j)
+            
+            ds[r1] = r2
+            
         
-        visited = set()
-        
-        def dfs(x, st):
-            st.append(x)
-            for y in g[x]:
-                if y not in visited:
-                    visited.add(y)
-                    dfs(y, st)
-        
-        idxArr = []
+        groups = defaultdict(list)
         
         for i in range(n):
-            if i not in visited:
-                st = []
-                visited.add(i)
-                dfs(i, st)
-                if len(st): idxArr.append(st)
+            r = find(ds, i)
+            groups[r].append(i)
         
         letters = list(s)
         
-        for arr in idxArr:
-            si = sorted(arr)
+        for idx in groups.values():
+            si = sorted(idx)
             sl = sorted([s[i] for i in si])
-            for i, c in zip(si, sl):
-                letters[i] = c
+            for i, l in zip(si, sl):
+                letters[i] = l
         
         return "".join(letters)
-
-
-        
