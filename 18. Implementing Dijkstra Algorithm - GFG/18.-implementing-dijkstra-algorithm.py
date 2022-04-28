@@ -23,10 +23,8 @@ class Solution:
             mset[minDistId] = True
             
             for j in range(V):
-                if not mset[j] and mat[minDistId][j] != 0 and \
-                d[j] > d[minDistId] + mat[minDistId][j]:
-                    
-                    d[j] = d[minDistId] + mat[minDistId][j]
+                if not mset[j] and mat[minDistId][j] != 0:
+                    d[j] = min(d[j], d[minDistId] + mat[minDistId][j])
             
         return d
         
