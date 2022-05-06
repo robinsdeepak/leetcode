@@ -1,19 +1,18 @@
 #User function Template for python3
+from functools import lru_cache
+
 class Solution:
 	def minDifference(self, arr, n):
         sm = sum(arr)
         ans = sm
-        dp = {i: {} for i in range(n)}
-        
+
+        @lru_cache(maxsize=None)
         def rec(i, fs):
-            if i == n: return abs(2 * fs - sm)
+            if i == n: 
+                return abs(2 * fs - sm)
             
-            if dp[i].get(fs) is not None:
-                return dp[i][fs]
+            return min(rec(i + 1, fs + arr[i]), rec(i + 1, fs))
             
-            dp[i][fs] = min(rec(i + 1, fs + arr[i]), rec(i + 1, fs))
-            
-            return dp[i][fs]
             
         return rec(0, 0)
         
