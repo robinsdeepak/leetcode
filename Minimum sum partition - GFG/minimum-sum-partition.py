@@ -4,18 +4,15 @@ from functools import lru_cache
 class Solution:
 	def minDifference(self, arr, n):
         sm = sum(arr)
-        ans = sm
 
         @lru_cache(maxsize=None)
         def rec(i, fs):
             if i == n: 
                 return abs(2 * fs - sm)
-            
             return min(rec(i + 1, fs + arr[i]), rec(i + 1, fs))
             
-            
         return rec(0, 0)
-        
+
 
 #{ 
 #  Driver Code Starts
