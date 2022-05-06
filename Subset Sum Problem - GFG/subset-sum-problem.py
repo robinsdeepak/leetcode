@@ -6,7 +6,7 @@ class Solution:
         
         def rec(i, t):
             if t == 0: return True
-            if i < 0 or t < 0: return False
+            if i == 0: return arr[0] == t
             
             if dp[i].get(t) is not None:
                 return dp[i][t]
