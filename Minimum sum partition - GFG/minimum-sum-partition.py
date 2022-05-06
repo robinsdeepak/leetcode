@@ -6,14 +6,14 @@ class Solution:
         sm = sum(arr)
 
         @lru_cache(maxsize=None)
-        def rec(i, fs):
+        def rec(i, s):
             
             if i < 0: 
-                return abs(2 * fs - sm)
+                return abs(2 * s - sm)
             
             return min(
-                rec(i - 1, fs + arr[i]), 
-                rec(i - 1, fs)
+                rec(i - 1, s + arr[i]), 
+                rec(i - 1, s)
             )
             
         return rec(n - 1, 0)
