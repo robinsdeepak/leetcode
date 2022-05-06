@@ -18,23 +18,6 @@ class Solution:
         return rec(0, 0)
         
 
-
-    def isSubsetSum(self, n, arr, sm):
-        dp = {i: {} for i in range(n)}
-        
-        def rec(i, t):
-            if t == 0: return True
-            if i == 0: return arr[0] == t
-            
-            if dp[i].get(t) is not None:
-                return dp[i][t]
-            
-            dp[i][t] = rec(i - 1, t - arr[i]) or rec(i - 1, t)
-            
-            return dp[i][t]
-        
-        return rec(n - 1, sm)
-
 #{ 
 #  Driver Code Starts
 #Initial Template for Python 3
