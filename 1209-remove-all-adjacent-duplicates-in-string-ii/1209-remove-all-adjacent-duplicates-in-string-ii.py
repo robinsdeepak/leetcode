@@ -7,9 +7,9 @@ class Solution:
             if not st or st[-1][0] != s[i]:
                 st.append([s[i], 1])
             else:
-                if st[-1][1] == k - 1:
-                    for i in range(k - 1): 
-                        st.pop()
-                else:
-                    st.append([s[i], st[-1][1] + 1])
-        return "".join(map(lambda x: x[0], st))
+                st[-1][1] += 1
+                if st[-1][1] == k:
+                    st.pop()
+                
+        return "".join(map(lambda x: x[0] * x[1], st))
+
