@@ -1,11 +1,11 @@
 #User function Template for python3
-def dfs(g, i, r, vs):
+def dfs(g, i, st, vs):
     for j in g[i]:
         if j not in vs:
             vs.add(j)
-            dfs(g, j, r, vs)
-    r.append(i)
-    return r
+            dfs(g, j, st, vs)
+    st.append(i)
+    return st
 
 class Solution:
     
@@ -26,14 +26,13 @@ class Solution:
 
         visited = set()
         count = 0
-        while st:
-            if st[-1] in visited:
-                st.pop()
-            else:
-                visited.add(st[-1])
-                dfs(tadj, st[-1], [], visited)
+        st.reverse()
+        for x in st:
+            if x not in visited:
+                visited.add(x)
+                dfs(tadj, x, [], visited)
                 count += 1
-                st.pop()
+                
         return count
 
 
