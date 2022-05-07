@@ -10,7 +10,7 @@ class Solution:
                 if j not in visited:
                     visited.add(j)
                     dfs(j, visited, st)
-            st.append(i)
+            if st is not None: st.append(i)
         
         st = []
         visited = set()
@@ -19,14 +19,11 @@ class Solution:
                 visited.add(i)
                 dfs(i, visited, st)
         
-        
-        if st:
-            top = st[-1]
-            visited = {top}
-            dfs(top, visited, [])
-            if len(visited) == V:
-                return top
-        return -1
+        top = st[-1]
+        visited = {top}
+        dfs(top, visited, None)
+
+        return top if len(visited) == V else -1
 
 #{ 
 #  Driver Code Starts
