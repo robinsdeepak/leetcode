@@ -34,16 +34,15 @@ class NestedIterator:
                 self.stack.append(el)
         
     def next(self) -> int:
-        self.makeTopInteger()
+        # self.makeTopInteger()
         
-        if self.stack:
-            el = self.stack.pop(-1)
-            return el.getInteger()
+        el = self.stack.pop(-1)
+        return el.getInteger()
         
     def hasNext(self) -> bool:
         self.makeTopInteger()
         return self.stack
-            
+        
 
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
