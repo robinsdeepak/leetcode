@@ -27,15 +27,12 @@ class NestedIterator:
         self.dfs(nestedList)
     
     def dfs(self, el):
-        if isinstance(el, list):
-            for ch in el:
-                self.dfs(ch)
+        if isinstance(el, NestedInteger) and el.isInteger():
+            self.integers.append(el.getInteger())
         else:
-            if el.isInteger():
-                self.integers.append(el.getInteger())
-            else:
-                for l in el.getList():
-                    self.dfs(l)
+            l = el.getList() if isinstance(el, NestedInteger) else el
+            for ch in l:
+                self.dfs(ch)
         
     
     def next(self) -> int:
