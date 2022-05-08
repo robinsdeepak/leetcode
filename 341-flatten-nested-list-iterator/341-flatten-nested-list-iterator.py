@@ -24,23 +24,18 @@ class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
         self.integers = []
         self.index = 0
-        q = [nestedList]
-        
-        # print(nestedList.isInteger())
-        
-        def dfs(el):
-            if isinstance(el, list):
-                for ch in el:
-                    dfs(ch)
+        self.dfs(nestedList)
+    
+    def dfs(self, el):
+        if isinstance(el, list):
+            for ch in el:
+                self.dfs(ch)
+        else:
+            if el.isInteger():
+                self.integers.append(el.getInteger())
             else:
-                if el.isInteger():
-                    self.integers.append(el.getInteger())
-                else:
-                    for l in el.getList():
-                        dfs(l)
-        
-        dfs(nestedList)
-            
+                for l in el.getList():
+                    self.dfs(l)
         
     
     def next(self) -> int:
