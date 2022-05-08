@@ -34,7 +34,7 @@ class NestedIterator:
                 self.stack.append(el)
         
     def next(self) -> int:
-        # self.makeTopInteger()
+        self.makeTopInteger()
         
         el = self.stack.pop(-1)
         return el.getInteger()
