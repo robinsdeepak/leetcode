@@ -4,11 +4,10 @@ class Solution:
         self.ans = []
     
     def backtrack(self, x, target, k, path):
-        # print(x, target, k)
         if target == 0 and k == 0:
             self.ans.append(path.copy())
         
-        if target <= 0 or k <= 0 or x <= 0:
+        if target <= 0 or k <= 0:
             return
         
         for i in range(x, 0, -1):
