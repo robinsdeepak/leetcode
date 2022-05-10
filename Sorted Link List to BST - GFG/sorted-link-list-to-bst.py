@@ -32,9 +32,8 @@ class Solution:
         slow.next = None
         prev.next = None
         
-        left = self.sortedListToBST(head)
         root = TNode(slow.data)
-        root.left = left
+        root.left = self.sortedListToBST(head)
         root.right = self.sortedListToBST(past)
         
         return root
