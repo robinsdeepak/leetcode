@@ -5,11 +5,8 @@ class Solution:
         
         @lru_cache(maxsize=None)
         def rec(c, f):
-            if f == 0:
-                return 1
-            
-            if c == 5:
-                return 0
+            if c == 4: return 1
+            if f == 1: return 5 - c
             
             res = 0
             for ff in range(f + 1):
