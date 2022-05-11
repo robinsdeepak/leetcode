@@ -3,12 +3,12 @@
 class Solution:
     def maxSubArraySum(self, arr, n):
         max_sum = float('-inf')
-        curr_sum = 0
+        curr_max = 0
         
         for i in range(n):
-            curr_sum += arr[i]
-            max_sum = max(curr_sum, max_sum)
-            curr_sum = max(0, curr_sum)
+            curr_max += arr[i]
+            max_sum = max(curr_max, max_sum)
+            curr_max = max(0, curr_max)
         return max_sum
 
 #{ 
@@ -35,4 +35,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-# } Driver Code Ends
+# } Driver Code Emax
