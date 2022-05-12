@@ -5,10 +5,11 @@ class Solution:
         max_sum = float('-inf')
         curr_max = 0
         
-        for i in range(n):
-            curr_max += arr[i]
+        for x in arr:
+            curr_max += x
             max_sum = max(curr_max, max_sum)
             curr_max = max(0, curr_max)
+        
         return max_sum
 
 #{ 
