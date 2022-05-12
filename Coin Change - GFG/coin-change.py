@@ -10,12 +10,8 @@ class Solution:
             if curr == 0: return 1
             if curr < 0 or i < 0: return 0
             
-            res = solve(i - 1, curr)
-            while curr - s[i] >= 0:
-                curr -= s[i]
-                res += solve(i - 1, curr)
+            return sum((solve(i-1, curr - s[i] * j) for j in range(curr // s[i] + 1)))
             
-            return res
         
         return solve(m-1, n)
 
