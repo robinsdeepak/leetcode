@@ -12,20 +12,29 @@ class Solution:
     def connect(self, root: 'Node') -> 'Node':
         if not root: return root
         
-        q = [root]
+        curr = root
+        prev = None
+        child = None
         
-        while len(q):
-            q2 = []
-            for i in range(len(q) - 1):
-                node = q[i]
-                node.next = q[i + 1]
-                
-                if node.left: q2.append(node.left)
-                if node.right: q2.append(node.right)
-                    
-            node = q[len(q) - 1]
-            if node.left: q2.append(node.left)
-            if node.right: q2.append(node.right)
-            q = q2
-        
+        while curr:
+            
+            items = []
+            if prev: items.append(prev)
+            if curr.left: items.append(curr.left)
+            if curr.right: items.append(curr.right)
+            
+            for i in range(len(items) - 1):
+                items[i].next = items[i + 1]
+            
+            if items:
+                prev = items[-1]
+            
+            if not child and len(items):
+                child = items[0]
+            
+            if curr.next:
+                curr = curr.next
+            else:
+                curr, child, prev = child, None, None
+                     
         return root
