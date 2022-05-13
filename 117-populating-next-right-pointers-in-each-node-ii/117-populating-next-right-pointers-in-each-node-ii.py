@@ -13,13 +13,13 @@ class Solution:
         if not root: return root
         
         curr = root
-        prev = None
-        child = None
+        prevChild = None
+        firstChild = None
         
         while curr:
             
             items = []
-            if prev: items.append(prev)
+            if prevChild: items.append(prevChild)
             if curr.left: items.append(curr.left)
             if curr.right: items.append(curr.right)
             
@@ -27,14 +27,14 @@ class Solution:
                 items[i].next = items[i + 1]
             
             if items:
-                prev = items[-1]
+                prevChild = items[-1]
             
-            if not child and len(items):
-                child = items[0]
+            if not firstChild and len(items):
+                firstChild = items[0]
             
             if curr.next:
                 curr = curr.next
             else:
-                curr, child, prev = child, None, None
+                curr, firstChild, prevChild = firstChild, None, None
                      
         return root
