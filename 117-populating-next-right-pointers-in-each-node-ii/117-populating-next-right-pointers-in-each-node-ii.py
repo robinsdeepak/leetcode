@@ -9,9 +9,7 @@ class Node:
 """
 
 class Solution:
-    def connect(self, root: 'Node') -> 'Node':
-        if not root: return root
-        
+    def connect(self, root: 'Node') -> 'Node':       
         curr = root
         prevChild = None
         firstChild = None
@@ -19,8 +17,8 @@ class Solution:
         while curr:
             
             items = []
-            if prevChild: items.append(prevChild)
-            if curr.left: items.append(curr.left)
+            if prevChild:  items.append(prevChild)
+            if curr.left:  items.append(curr.left)
             if curr.right: items.append(curr.right)
             
             for i in range(len(items) - 1):
