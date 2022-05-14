@@ -1,5 +1,6 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        # using Dijkstra Algorithm to find sorted distance from source to all nodes
         
         if len(times) < n - 1:
             return -1
@@ -14,9 +15,7 @@ class Solution:
         mat = [[-1] * n for _ in range(n)]
         
         for u, v, w in times:
-            mat[u - 1][v - 1] = w
-            # print(u - 1, v - 1, w)
-        
+            mat[u - 1][v - 1] = w        
         
         for i in range(n):
             minDistId = -1
