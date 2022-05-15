@@ -18,19 +18,6 @@ class Solution:
                 
         return count
 
-        
-    # def countSubArrayProductLessThanK(self, a, n, k):
-    #     mat = [[-1] * n for _ in range(n)]
-    #     count = 0
-    #     for i in range(n): 
-    #         mat[i][i] = a[i]
-    #         count += (mat[i][i] < k)
-    #     for i in range(n):
-    #         for j in range(i+1, n):
-    #             mat[i][j] = mat[i][j - 1] * a[j]
-    #             count += (mat[i][j] < k)
-    #     return count
-
 
 #{ 
 #  Driver Code Starts
