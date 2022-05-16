@@ -21,15 +21,16 @@ class Solution:
             while len(q):
                 q2 = []
                 for xx, cc in q:
-                    if xx in colors and colors[xx] != cc:
-                        return False
-                    else:
-                        continue
-                    
+                    if xx in colors:
+                        if colors[xx] != cc:
+                            return False
+                        else:
+                            continue
+ 
                     colors[xx] = cc
                     
                     for node in adj[xx]:
-                        q2.append((xx, abs(1 - cc)))
+                        q2.append((node, abs(1 - cc)))
                 q = q2
             
             return True
@@ -37,7 +38,7 @@ class Solution:
     
         for i in range(V):
             if i not in colors:
-                if not dfs(i, 0):
+                if not bfs(i, 0):
                     # print(i)
                     return False
         
