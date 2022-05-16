@@ -14,7 +14,27 @@ class Solution:
                     return False
             
             return True
+        
+        def bfs(x, c):
+            q = [(x, c)]
             
+            while len(q):
+                q2 = []
+                for xx, cc in q:
+                    if xx in colors and colors[xx] != cc:
+                        return False
+                    else:
+                        continue
+                    
+                    colors[xx] = cc
+                    
+                    for node in adj[xx]:
+                        q2.append((xx, abs(1 - cc)))
+                q = q2
+            
+            return True
+            
+    
         for i in range(V):
             if i not in colors:
                 if not dfs(i, 0):
