@@ -2,10 +2,7 @@ from functools import lru_cache
 
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        m = len(matrix)
-        n = len(matrix[0])
-        dp = {}
-        
+        m, n = len(matrix), len(matrix[0])
         df = ((1, 0), (0, 1), (-1, 0), (0, -1))
         
         def valid(x, y):
@@ -21,7 +18,6 @@ class Solution:
             return curr + 1
         
         ans = 0
-        
         for i in range(m):
             for j in range(n):
                 ans = max(ans, dfs(i, j))
