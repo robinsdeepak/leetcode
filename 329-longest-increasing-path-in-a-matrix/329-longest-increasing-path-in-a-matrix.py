@@ -13,9 +13,6 @@ class Solution:
         
         @lru_cache(maxsize=None)
         def dfs(x, y):
-            if not valid(x, y):
-                return 0
-            
             curr = 0
             for dx, dy in df:
                 x2, y2 = x + dx, y + dy
