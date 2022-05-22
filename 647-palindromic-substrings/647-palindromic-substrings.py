@@ -1,16 +1,10 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        return self.solution_1(s)
-        
-    def solution_1(self, s):
         n = len(s)
         ans = 0
-        
         for i in range(n):
             for j in range(2):
-
                 l, h = i, i + j
-
                 while l >= 0 and h < n and s[l] == s[h]:
                     ans += 1
                     l -= 1
