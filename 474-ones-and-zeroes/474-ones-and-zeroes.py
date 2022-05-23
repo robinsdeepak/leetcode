@@ -3,7 +3,7 @@ from functools import lru_cache
 class Solution:
 
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
-        return self.iterative(strs, m, n)
+        return self.recursive_2(strs, m, n)
     
     def iterative(self, strs, m, n):
         dp = [[0] * (n + 1) for _ in range(m + 1)]
@@ -33,3 +33,24 @@ class Solution:
             return max(rec(i + 1, c0, c1), rec(i + 1, c0 - cc0, c1 - cc1) + 1)
             
         return rec(0, m, n)
+
+    def recursive_2(self, strs, m, n):
+        counter = Counter([(s.count('0'), s.count('1')) for s in strs])
+        d = defaultdict(lambda: -1)
+        
+        def dfs(m, n, count):
+            if d[(m, n)] >= count: return d[(m, n)]
+            max_count = count
+            d[(m, n)] = count
+            
+            for k, v in counter.items():
+                if v <= 0: continue
+                zeros, ones = k[0], k[1]
+                if zeros <= m and ones <= n:
+                    counter[k] -= 1
+                    max_count = max(max_count, dfs(m - zeros, n - ones, count + 1))
+                    counter[k] += 1
+            return max_count        
+        return dfs(m, n, 0)
+        
+    
