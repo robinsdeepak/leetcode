@@ -1,10 +1,5 @@
 class Solution:
     def numberOfSteps(self, num: int) -> int:
-        count = 0
-        while num:
-            if num % 2:
-                num -= 1
-            else:
-                num //= 2
-            count += 1
-        return count
+        bin_str = bin(num)
+        return len(bin_str) + bin_str.count("1") - 3
+    
