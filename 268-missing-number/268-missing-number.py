@@ -3,6 +3,5 @@ class Solution:
         n = len(nums)
         ans = 0
         for i in range(n):
-            ans ^= (i + 1)
-            ans ^= nums[i]
+            ans ^= (i + 1) ^ nums[i]
         return ans
