@@ -12,9 +12,7 @@ class Solution:
         freq = []
         for w in words:
             freq.append((bits(w), len(w)))
-        
-        freq.sort(key=lambda x: -x[1])
-        
+                
         ans = 0
         for i in range(n):
             for j in range(i + 1, n):
@@ -22,3 +20,4 @@ class Solution:
                     ans = max(ans, (freq[i][1] * freq[j][1]))
         
         return ans
+
