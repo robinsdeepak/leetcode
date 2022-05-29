@@ -9,10 +9,8 @@ class Solution:
                 x |= (1 << (ord(c) - 97))
             return x
         
-        freq = []
-        for w in words:
-            freq.append((bits(w), len(w)))
-                
+        freq = [(bits(w), len(w)) for w in words]
+        
         ans = 0
         for i in range(n):
             for j in range(i + 1, n):
