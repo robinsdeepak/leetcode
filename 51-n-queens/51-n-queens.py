@@ -5,7 +5,7 @@ class Solution:
         self.ans = []
     
     def isValid(self, i, j, n):
-        for r in range(n):
+        for r in range(i):
             if self.board[r][j] == 'Q':
                 return False
         
@@ -13,8 +13,8 @@ class Solution:
             if self.board[i][c] == 'Q':
                 return False
         
-        dirs = ((-1, -1), (-1, 1), (1, -1), (1, 1))
-        corners = [(i, j, ii) for ii in range(4)]
+        dirs = ((-1, -1), (-1, 1))
+        corners = [(i, j, ii) for ii in range(2)]
         
         while corners:
             c2 = []
@@ -53,4 +53,3 @@ class Solution:
         self.solve(0, n)
         return self.ans
 
-        
