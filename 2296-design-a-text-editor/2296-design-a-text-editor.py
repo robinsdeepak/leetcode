@@ -12,8 +12,6 @@ class TextEditor:
 
     def addText(self, text: str) -> None:
         right = self.cursor.right
-        if right:
-            right.left = None
             
         node = None
         for char in text:
@@ -63,14 +61,7 @@ class TextEditor:
             tmp = tmp.left
             c -= 1
         return text[::-1]
-    
-    def printText(self):
-        tmp = self.root.right
-        text = ""
-        while tmp:
-            text += tmp.char
-            tmp = tmp.right
-        print(text, self.cursor.char)
+
 
 # Your TextEditor object will be instantiated and called as such:
 # obj = TextEditor()
