@@ -6,6 +6,9 @@
 
 class Solution:
     def getIntersectionNode(self, head1, head2):
+        return self.solution_2(head1, head2)
+    
+    def solution_1(self, head1, head2):
         h1, h2 = head1, head2
         n1, n2 = 0, 0
         
@@ -36,3 +39,24 @@ class Solution:
             h2 = h2.next
         
         return None
+
+    def solution_2(self, head1, head2):
+        st1, st2 = [], []
+        h1, h2 = head1, head2
+        
+        while h1:
+            st1.append(h1)
+            h1 = h1.next
+        
+        while h2:
+            st2.append(h2)
+            h2 = h2.next
+        
+        prev = None
+        while st1 and st2:
+            h1, h2 = st1.pop(), st2.pop()
+            if h1 != h2:
+                return prev
+            prev = h1
+        
+        return prev
