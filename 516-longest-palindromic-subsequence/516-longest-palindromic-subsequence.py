@@ -12,15 +12,17 @@ class Solution:
         dp = [[0] * n for _ in range(n+1)]
         
         for i in range(n):
-            dp[1][i] = 1
+            dp[i][i] = 1
         
-        for i in range(2, n + 1):
-            for j in range(n - i + 1):
-                dp[i][j] = 2 + dp[i - 2][j + 1] if s[j] == s[i + j - 1] \
-                          else max(dp[i-1][j],dp[i-1][j+1])
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                if s[i] == s[j]:
+                    dp[i][j] = 2 + dp[i + 1][j - 1]
+                else:
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
         
-        return dp[n][0]
-        
+        return dp[0][n - 1]
+
     
     def solution_2(self, s):
         # recursive and memoization
