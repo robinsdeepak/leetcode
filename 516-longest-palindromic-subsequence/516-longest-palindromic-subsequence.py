@@ -4,7 +4,23 @@ sys.setrecursionlimit(10**6)
 
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
-        return self.solution_2(s)
+        return self.solution_3(s)
+    
+    def solution_3(self, s):
+        # dp
+        n = len(s)
+        dp = [[0] * n for _ in range(n+1)]
+        
+        for i in range(n):
+            dp[1][i] = 1
+        
+        for i in range(2, n + 1):
+            for j in range(n - i + 1):
+                dp[i][j] = 2 + dp[i - 2][j + 1] if s[j] == s[i + j - 1] \
+                          else max(dp[i-1][j],dp[i-1][j+1])
+        
+        return dp[n][0]
+        
     
     def solution_2(self, s):
         # recursive and memoization
@@ -21,11 +37,11 @@ class Solution:
             
         return rec(0, len(s) - 1)
     
+    
     def solution_1(self, s):
         # lcs and dp
-        return self.lcs(s, s[::-1])
-    
-    def lcs(self, w1, w2):
+        w1, w2 = s, s[::-1]
+        
         n1, n2 = len(w1), len(w2)
         dp = [0] * (n2 + 1)
         
