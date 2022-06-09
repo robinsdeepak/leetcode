@@ -1,6 +1,21 @@
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
-        return self.solution_3(matrix)
+        return self.solution_0(matrix)
+    
+    def solution_0(self, matrix):
+        m, n = len(matrix), len(matrix[0])
+        size = 0
+        
+        for i in range(m):
+            for j in range(n):
+                if i == 0 or j == 0 or matrix[i][j] == "0":
+                    matrix[i][j] = int(matrix[i][j])
+                else:
+                    matrix[i][j] = min(matrix[i - 1][j - 1], matrix[i][j - 1], matrix[i - 1][j]) + 1
+            
+                size = max(size, matrix[i][j])
+        
+        return size * size
     
     def solution_1(self, matrix):
         m, n = len(matrix), len(matrix[0])
