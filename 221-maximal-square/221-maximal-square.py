@@ -1,6 +1,6 @@
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
-        return self.solution_2(matrix)
+        return self.solution_3(matrix)
     
     def solution_1(self, matrix):
         m, n = len(matrix), len(matrix[0])
@@ -37,3 +37,24 @@ class Solution:
             dp = temp
         
         return size * size
+    
+    def solution_3(self, matrix):
+        m, n = len(matrix), len(matrix[0])
+        size = 0
+        
+        @lru_cache(maxsize=None)
+        def rec(i, j):
+            if i == 0 or j == 0 or matrix[i][j] == "0":
+                curr = int(matrix[i][j])
+            else:
+                curr = min(rec(i, j - 1), rec(i - 1, j), rec(i - 1, j - 1)) + 1
+            nonlocal size
+            size = max(size, curr)
+            return curr
+        
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                rec(i, j)
+        
+        return size * size
+
