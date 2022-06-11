@@ -1,6 +1,3 @@
-from functools import lru_cache
-
-
 class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
         n = len(nums)
