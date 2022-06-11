@@ -5,18 +5,17 @@ class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
         n = len(nums)
         t = sum(nums) - x
-        
         if t == 0: return n
         
-        m = {0: -1}
-        l = -1
-        s = 0
-        for i in range(n):
-            s += nums[i]
-            if s - t in m:
-                l = max(l, i - m[s - t])
-            
-            m[s] = i
+        i, curr_sum, ans = 0, 0, n + 1
         
-        return -1 if l == -1 else n - l
-    
+        for j in range(n):
+            curr_sum += nums[j]
+            while i <= j and curr_sum > t:
+                curr_sum -= nums[i]
+                i += 1
+            
+            if curr_sum == t:
+                ans = min(ans, n - (j - i + 1))
+        
+        return ans if ans < n else -1
