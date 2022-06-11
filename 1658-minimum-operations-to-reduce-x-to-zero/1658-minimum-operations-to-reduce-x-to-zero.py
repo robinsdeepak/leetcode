@@ -4,25 +4,19 @@ from functools import lru_cache
 class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
         n = len(nums)
-        
-        if nums[0] == x: 
-            return 1
-        
-        ans = n + 1
-        curr_sum = nums[0]
         t = sum(nums) - x
-        i = 0
         
-        if curr_sum == t:
-            ans = n - 1
+        if t == 0: return n
         
-        for j in range(1, n):
-            curr_sum += nums[j]
-            while i <= j and curr_sum > t:
-                curr_sum -= nums[i]
-                i += 1
+        m = {0: -1}
+        l = -1
+        s = 0
+        for i in range(n):
+            s += nums[i]
+            if s - t in m:
+                l = max(l, i - m[s - t])
             
-            if curr_sum == t:
-                ans = min(ans, n - (j - i + 1))
+            m[s] = i
         
-        return ans if ans < n + 1 else -1
+        return -1 if l == -1 else n - l
+    
