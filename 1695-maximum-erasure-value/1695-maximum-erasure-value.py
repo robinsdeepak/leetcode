@@ -3,24 +3,19 @@ class Solution:
         
         n = len(nums)
         
-        prefixSum = [0] * n
+        hset = set()
         
-        for i in range(n):
-            prefixSum[i] = prefixSum[i - 1] + nums[i]
-        
-        lastIdx = {}
-        
-        maxSum = 0
-        currSum = 0
-        start = 0
-        
-        for i, x in enumerate(nums):
-            if x in lastIdx and lastIdx[x] >= start:
-                start = lastIdx[x] + 1
-
-            currSum = (prefixSum[i] - prefixSum[start - 1]) if start > 0 else prefixSum[i]
-            maxSum = max(currSum, maxSum)
+        i = 0
+        curr, mx = 0, 0
+        for j, x in enumerate(nums):
             
-            lastIdx[x] = i
+            while x in hset:
+                hset.remove(nums[i])
+                curr -= nums[i]
+                i += 1
+                
+            hset.add(x)
+            curr += x
+            mx = max(mx, curr)
         
-        return maxSum
+        return mx
