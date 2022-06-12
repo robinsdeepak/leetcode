@@ -1,21 +1,22 @@
 class Solution:
     def maximumUniqueSubarray(self, nums: List[int]) -> int:
+                
+        found = [False] * 10001
         
-        n = len(nums)
-        
-        hset = set()
+        curr, mx = 0, 0
         
         i = 0
-        curr, mx = 0, 0
-        for j, x in enumerate(nums):
+
+        for x in nums:
             
-            while x in hset:
-                hset.remove(nums[i])
+            while found[x]:
+                found[nums[i]] = False
                 curr -= nums[i]
                 i += 1
                 
-            hset.add(x)
+            found[x] = True
             curr += x
-            mx = max(mx, curr)
+            
+            if curr > mx: mx = curr
         
         return mx
