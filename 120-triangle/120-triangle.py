@@ -36,7 +36,7 @@ class Solution:
         dp = [0] * (n + 1)
         
         for r in range(n - 1, -1, -1):
-            temp = [INF] * (n + 1)
+            temp = [INF] * (r + 1)
             for c in range(r + 1):
                 temp[c] = tr[r][c] + min(dp[c], dp[c + 1])
             dp = temp
