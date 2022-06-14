@@ -4,7 +4,7 @@ INF = float('inf')
 
 class Solution:
     def minimumTotal(self, tr: List[List[int]]) -> int:
-        return self.solution_3(tr)
+        return self.solution_4(tr)
     
     def solution_1(self, tr):
         n = len(tr)
@@ -42,3 +42,12 @@ class Solution:
             dp = temp
         
         return dp[0]
+    
+    def solution_4(self, tr):
+        n = len(tr)
+        
+        for i in range(1, n):
+            for j in range(i + 1):
+                tr[i][j] = tr[i][j] + min(tr[i - 1][max(0, j - 1)], tr[i - 1][min(i - 1, j)])
+        
+        return min(tr[n - 1])
