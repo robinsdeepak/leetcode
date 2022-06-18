@@ -1,10 +1,8 @@
-
 class WordFilter:
 
     def __init__(self, words: List[str]):
         self.prefix = {}
         self.suffix = {}
-        self.words = words
         self.memo = {}
         
         for idx, word in enumerate(words):
@@ -15,11 +13,10 @@ class WordFilter:
                 if pref not in self.prefix:
                     self.prefix[pref] = set()
                 
-                self.prefix[pref].add(idx)
-                
                 if suff not in self.suffix:
                     self.suffix[suff] = set()
                 
+                self.prefix[pref].add(idx)                
                 self.suffix[suff].add(idx)
                 
     def f(self, prefix: str, suffix: str) -> int:
@@ -31,7 +28,7 @@ class WordFilter:
         suffix_set = self.suffix.get(suffix, set())
         
         matches = prefix_set.intersection(suffix_set)
-        # print(matches)
+        
         if not matches: return -1
         
         self.memo[(prefix, suffix)] = max(matches)
