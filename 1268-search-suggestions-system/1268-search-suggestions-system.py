@@ -7,6 +7,9 @@ class Solution:
             for j in range(1, len(pd) + 1):
                 pref = pd[:j]
                 
+                if not searchWord.startswith(pref):
+                    break
+                
                 if pref not in m:
                     m[pref] = []
                 
