@@ -1,26 +1,19 @@
 class Solution:
-    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
+    def suggestedProducts(self, products: List[str], sw: str) -> List[List[str]]:
         
-        m = {}
+        ans = [[] for _ in sw]
         
-        for i, pd in enumerate(products):
-            for j in range(len(pd)):
-                pref = pd[:j + 1]
-                
-                if not searchWord.startswith(pref):
+        for pd in products:
+            for j in range(min(len(pd), len(sw))):
+                if pd[j] != sw[j]:
                     break
                 
-                if pref not in m:
-                    m[pref] = []
+                if len(ans[j]) < 3:
+                    ans[j].append(pd)
+                    
+                elif pd < ans[j][2]:
+                    ans[j][2] = pd
+                    
+                ans[j].sort()
                 
-                m[pref].append(i)
-                
-                if len(m[pref]) == 4:
-                    m[pref].remove(max(m[pref], key=lambda x: products[x]))
-        
-        ans = []
-        for j in range(len(searchWord)):
-            pref = searchWord[:j + 1]
-            ans.append(sorted(list(map(lambda x: products[x], m.get(pref, [])))))
-        
         return ans
