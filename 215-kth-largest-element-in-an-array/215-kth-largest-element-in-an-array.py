@@ -8,4 +8,5 @@ class Solution:
             
             if len(s) > k:
                 heappop(s)
+            
         return heappop(s)
