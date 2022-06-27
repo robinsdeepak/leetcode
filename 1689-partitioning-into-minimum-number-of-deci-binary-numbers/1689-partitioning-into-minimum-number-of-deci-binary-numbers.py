@@ -1,6 +1,6 @@
 class Solution:
     def minPartitions(self, n: str) -> int:
-        return self.solution_3(n)
+        return self.solution_1(n)
     
     def solution_1(self, n):
         return int(max(n))
