@@ -1,4 +1,5 @@
 from collections import defaultdict
+from heapq import *
 
 class Solution:
     def minDeletions(self, s: str) -> int:
@@ -6,24 +7,17 @@ class Solution:
         for c in s:
             freq[c] += 1
         
-        cc = sorted(list(freq.items()))
+        pq = []
         
-        added = set()
-        filled = 0
+        for char, count in freq.items():
+            heappush(pq, -count)
+        
         ans = 0
-        
-        # print(cc)
-        
-        for char, count in cc:
-            for i in range(count, filled, -1):
-                if i not in added:
-                    added.add(i)
-                    ans += (count - i)
-                    # print(char, count, i)
-                    if i == filled + 1:
-                        filled += 1
-                    break
-            else:
-                ans += count
-                    
+
+        while len(pq) > 1:
+            top = -heappop(pq)
+            if top == -pq[0]:
+                if top > 1:
+                    heappush(pq, - (top - 1))
+                ans += 1
         return ans
