@@ -6,21 +6,32 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
         
-        ans = 0
-        q = [root]
+        def leftHeight(node):
+            x = 0
+            while node:
+                x += 1
+                node = node.left
+            return x
         
-        while len(q):
-            ans += len(q)
-            q2 = []
+        def rightHeight(node):
+            x = 0
+            while node:
+                x += 1
+                node = node.right
+            return x
+        
+        def rec(node):
+            if not node:
+                return 0
             
-            for node in q:
-                
-                if node.left: q2.append(node.left)
-                if node.right: q2.append(node.right)
+            lh = leftHeight(node)
+            rh = rightHeight(node)
             
-            q = q2
-            
-        return ans
+            if lh == rh:
+                return 2 ** lh - 1
+            else:
+                return 1 + rec(node.left) + rec(node.right)
+        
+        return rec(root)
+    
