@@ -3,7 +3,6 @@ class Solution:
         n = len(nums)
         
         if n == 1: return 1
-        if n == 2: 1 if nums[0] == nums[1] else 2
         
         prev = nums[1] - nums[0]
         
