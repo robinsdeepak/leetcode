@@ -1,6 +1,6 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        return self.solution_2(cost)
+        return self.solution_3(cost)
         
     def solution_1(self, cost):
         n = len(cost)
@@ -28,3 +28,16 @@ class Solution:
             dp[i] = cost[i] + min(dp[i + 1], dp[i + 2])
         
         return min(dp[0], dp[1])
+
+    def solution_3(self, cost):
+        
+        n = len(cost)
+        last1, last2 = 0, 0
+        
+        for i in range(n - 1, -1, -1):
+            curr = cost[i] + min(last1, last2)
+            last1, last2 = curr, last1
+        
+        return min(last1, last2)
+
+    
