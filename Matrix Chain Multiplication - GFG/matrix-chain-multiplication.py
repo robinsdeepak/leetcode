@@ -3,14 +3,13 @@ from functools import lru_cache
 
 class Solution:
     def matrixMultiplication(self, n, arr):
+        return self.solution_1(n, arr)
         
+    def solution_1(self, n, arr):
         @lru_cache(None)
         def solve(s, e):
             if s == e:
                 return 0
-            
-            if s + 1 == e:
-                return arr[s - 1] * arr[s] * arr[s + 1]
             
             ans = float('inf')
             
@@ -25,6 +24,7 @@ class Solution:
             return ans
             
         return solve(1, n - 1)
+        
 
 #{ 
 #  Driver Code Starts
