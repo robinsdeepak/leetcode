@@ -6,7 +6,6 @@ class Solution:
         
         @lru_cache(None)
         def solve(s, e):
-            # print(s, e)
             if s == e:
                 return 0
             
@@ -16,8 +15,11 @@ class Solution:
             ans = float('inf')
             
             for m in range(s, e):
-                curr = solve(s, m) + solve(m + 1, e) + arr[s - 1] * arr[m] * arr[e]
-                # print(s, m, e, curr)
+                left = solve(s, m)
+                right = solve(m + 1, e)
+                merge = arr[s - 1] * arr[m] * arr[e]
+                curr = left + right + merge
+                
                 ans = min(ans, curr)
             
             return ans
