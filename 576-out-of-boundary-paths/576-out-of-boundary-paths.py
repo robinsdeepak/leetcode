@@ -5,7 +5,6 @@ MOD = 10 ** 9 + 7
 class Solution:
     def findPaths(self, m, n, maxMove, startRow, startColumn):
         
-        
         @lru_cache(None)
         def rec(sr, sc, mm):
             if sr < 0 or sr >= m or sc < 0 or sc >= n:
