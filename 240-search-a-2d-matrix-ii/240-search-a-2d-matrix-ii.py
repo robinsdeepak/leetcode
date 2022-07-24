@@ -17,16 +17,14 @@ class Solution:
     
     def solution_2(self, matrix, target):
         m, n = len(matrix), len(matrix[0])
-        
         r, c = m - 1, 0
         
-        
         while r >= 0 and c < n:
-            if matrix[r][c] == target:
-                return True
-            elif matrix[r][c] > target:
+            if matrix[r][c] > target:
                 r -= 1
-            else:
+            elif matrix[r][c] < target:
                 c += 1
+            else:
+                return True
         
         return False
