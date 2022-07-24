@@ -20,11 +20,11 @@ class Solution:
         r, c = m - 1, 0
         
         while r >= 0 and c < n:
+            if matrix[r][c] == target:
+                return True
             if matrix[r][c] > target:
                 r -= 1
-            elif matrix[r][c] < target:
-                c = bisect_left(matrix[r], target)
             else:
-                return True
+                c = bisect_left(matrix[r], target)
         
         return False
