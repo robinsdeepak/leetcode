@@ -23,7 +23,7 @@ class Solution:
             if matrix[r][c] > target:
                 r -= 1
             elif matrix[r][c] < target:
-                c += 1
+                c = bisect_left(matrix[r], target)
             else:
                 return True
         
