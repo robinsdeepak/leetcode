@@ -22,9 +22,10 @@ class Solution:
         while r >= 0 and c < n:
             if matrix[r][c] == target:
                 return True
-            if matrix[r][c] > target:
+            elif matrix[r][c] > target:
                 r -= 1
             else:
-                c = bisect_left(matrix[r], target)
+                # c += 1
+                c = bisect_left(matrix[r], target, c, n)
         
         return False
