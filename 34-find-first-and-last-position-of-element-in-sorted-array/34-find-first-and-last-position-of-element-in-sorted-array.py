@@ -1,6 +1,21 @@
+import bisect
+
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
+        return self.solution_2(nums, target)    
+    
+    def solution_2(self, nums, target):
+        s = bisect.bisect_left(nums, target)
         
+        if s == len(nums) or nums[s] != target:
+            return [-1, -1]
+        
+        e = bisect.bisect_right(nums, target) - 1
+        
+        return [s, e]
+    
+        
+    def solution_1(self, nums, target):
         n = len(nums)
                 
         i, j = 0, n - 1
