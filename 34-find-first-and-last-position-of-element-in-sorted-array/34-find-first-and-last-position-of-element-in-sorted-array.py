@@ -2,7 +2,17 @@ import bisect
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        return self.solution_2(nums, target)    
+        return self.solution_3(nums, target)    
+    
+    def solution_3(self, nums, target):
+        s = bisect.bisect_left(nums, True, key=lambda x: x >= target)
+        
+        if s == len(nums) or nums[s] != target:
+            return [-1, -1]
+        
+        e = bisect.bisect_left(nums, True, key=lambda x: x > target) - 1
+        
+        return [s, e]
     
     def solution_2(self, nums, target):
         s = bisect.bisect_left(nums, target)
