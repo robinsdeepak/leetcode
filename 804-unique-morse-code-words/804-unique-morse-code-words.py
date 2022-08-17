@@ -12,5 +12,4 @@ class Solution:
             'y': '-.--', 'z': '--..'
         }
 
-        return ''.join((m[ch] for ch in word))
-    
+        return ''.join(map(m.get, word))
