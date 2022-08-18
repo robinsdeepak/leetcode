@@ -5,7 +5,7 @@ class Solution:
         
         x = 0
         i = 0
-        while (x < n / 2) and (i < n):
+        while (x < n / 2):
             x += counts[i]
             i += 1
         
