@@ -21,7 +21,7 @@ class Solution:
     
     def solution_2(self, target, startFuel, stations):
         pq = []
-        stations.append((target, float('inf')))
+        stations.append((target, 0))
         
         ans = 0
         prev = 0
