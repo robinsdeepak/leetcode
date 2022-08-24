@@ -6,24 +6,18 @@ class Solution:
         
         @lru_cache(None)
         def rec(i, p, t):
-            if t == -1:
+            if t == -1: 
                 return inf
             if i == -1:
-                return 0 if t == 0 else inf
+                if t == 0:
+                    return 0
+                else:
+                    return inf
             
             if houses[i] != 0:
-                ct = t if p == houses[i] else t - 1
-                return rec(i - 1, houses[i], ct)
+                return rec(i - 1, houses[i], t - (p != houses[i]))
             
-            c = inf
-            for j in range(1, n + 1):
-                cc = cost[i][j - 1]
-                ct = t
-                if p != j:
-                    ct -= 1
-                    
-                c = min(c, rec(i - 1, j, ct) + cc)
-            return c
+            return min(rec(i - 1, j, t - (p != j)) + cost[i][j - 1] for j in range(1, n + 1))
         
         ans = rec(m - 1, -1, target)
         return -1 if ans == inf else ans
