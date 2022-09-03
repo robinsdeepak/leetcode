@@ -2,25 +2,22 @@ class Solution:
     def numsSameConsecDiff(self, n: int, k: int) -> List[int]:
         self.ans = []
         
-        def backtrack(num):
-            if len(num) == n:
-                self.ans.append(int(num))
+        def rec(num, l, c):
+            if c == n:
+                self.ans.append(num)
                 return
-            
-            l = int(num[-1])
-            
+                        
             if k == 0:
-                backtrack(num + str(l))
+                rec(num * 10 + l, l, c + 1)
                 return
             
             if l + k < 10:
-                backtrack(num + str(l + k))
+                rec(num * 10 + (l + k), (l + k), c + 1)
             
             if l - k >= 0:
-                backtrack(num + str(l - k))
+                rec(num * 10 + (l - k), (l - k), c + 1)
         
         for i in range(1, 10):
-            backtrack(str(i))
+            rec(i, i, 1)
         
         return self.ans
-
