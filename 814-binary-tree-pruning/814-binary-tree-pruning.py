@@ -21,11 +21,7 @@ class Solution:
             if not r:
                 root.right = None
 
-
-            return root.val == 1 or l or r
+            return root.val or l or r
         
-        x = solve(root_)
-        if not x and root_.val == 0:
-            return None
-        return root_
+        return root_ if solve(root_) else None
 
