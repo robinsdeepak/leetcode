@@ -8,6 +8,7 @@ class Solution:
                 curr -= 1
             if s[i] in 'aeiou':
                 curr += 1
-                ans = max(curr, ans)
+                if curr > ans:
+                    ans = curr
 
         return ans
