@@ -10,5 +10,7 @@ class Solution:
                 curr += 1
                 if curr > ans:
                     ans = curr
+                    if ans == k:
+                        return ans
 
         return ans
