@@ -2,11 +2,12 @@ class Solution:
     def maxVowels(self, s: str, k: int) -> int:
         curr = 0
         ans = 0
+        vowels = {'a', 'e', 'i', 'o', 'u'}
         
         for i in range(len(s)):
-            if i >= k and s[i - k] in 'aeiou':
+            if i >= k and s[i - k] in vowels:
                 curr -= 1
-            if s[i] in 'aeiou':
+            if s[i] in vowels:
                 curr += 1
                 if curr > ans:
                     ans = curr
