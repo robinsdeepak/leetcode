@@ -3,11 +3,9 @@ class Solution:
         ascii_vowels = 'AEIOUaeiou'
         m = {c: i for i, c in enumerate(ascii_vowels)}
         freq = [0] * len(ascii_vowels)
-        # print(m)
         for c in s:
             if c in m:
                 freq[m[c]] += 1
-        # print(freq)
         chars = list(s)
         ptr = 0
         for i, c in enumerate(chars):
@@ -22,5 +20,4 @@ class Solution:
 
             freq[ptr] -= 1
             chars[i] = ascii_vowels[ptr]
-            # print(i, c, ptr, chars)
         return "".join(chars)
