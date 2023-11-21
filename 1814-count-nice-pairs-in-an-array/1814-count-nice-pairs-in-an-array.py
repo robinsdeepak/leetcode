@@ -3,13 +3,7 @@ class Solution:
         def rev(x):
             return int(str(x)[::-1])
 
-        m = {}
-        
-        for x in nums:
-            diff = rev(x) - x
-            if diff not in m:
-                m[diff] = 0
-            m[diff] += 1
+        m = Counter((rev(x) - x for x in nums))
 
         ans = 0        
         M = 10 ** 9 + 7
