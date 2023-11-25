@@ -2,8 +2,6 @@ class Solution:
     def getSumAbsoluteDifferences(self, nums: List[int]) -> List[int]:
         n = len(nums)
         s = sum(nums)
-
-        result = [0] * n
         
         curr_sum = 0
         
@@ -11,6 +9,6 @@ class Solution:
             before = x * i - curr_sum
             curr_sum += x
             after = s - curr_sum - x * (n - i - 1)
-            result[i] = before + after
+            nums[i] = before + after
 
-        return result
+        return nums
